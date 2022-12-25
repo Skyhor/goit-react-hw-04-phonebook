@@ -19,25 +19,23 @@ export class App extends Component {
     filter: '',
   };
 
-  addContact = task => {
-    const searchSameName = this.state.contacts
-      .filterç(cont => cont.name)
-      .includes(task.name);
+  addContact = userData => {
+    const searchSameName = this.state.contacts.find(
+      cont => cont.name === userData.name
+    );
 
     if (searchSameName) {
-      alert(`${task.name} is already in contacts`);
-    } else if (task.name.length === 0) {
-      alert('Fields must be filled!');
-    } else {
-      const contact = {
-        ...task,
-        id: nanoid(),
-      };
-
-      this.setState(prevState => ({
-        contacts: [...prevState.contacts, contact],
-      }));
+      alert(`${userData.name} is already in contacts`);
+      return;
     }
+    const contact = {
+      ...userData,
+      id: nanoid(),
+    };
+
+    this.setState(prevState => ({
+      contacts: [...prevState.contacts, contact],
+    }));
   };
   getVisibleContacts = () => {
     const { contacts, filter } = this.state;
