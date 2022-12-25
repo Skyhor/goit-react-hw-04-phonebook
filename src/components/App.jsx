@@ -21,7 +21,7 @@ export class App extends Component {
 
   addContact = task => {
     const searchSameName = this.state.contacts
-      .map(cont => cont.name)
+      .filterç(cont => cont.name)
       .includes(task.name);
 
     if (searchSameName) {
