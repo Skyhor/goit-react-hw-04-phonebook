@@ -11,7 +11,6 @@ export const App = () => {
   const [filter, setFilter] = useState('');
   const addContact = userData => {
     const searchSameName = contacts.find(cont => cont.name === userData.name);
-    console.log(contacts);
     if (searchSameName) {
       alert(`${userData.name} is already in contacts`);
       return;
@@ -20,7 +19,6 @@ export const App = () => {
       ...userData,
       id: nanoid(),
     };
-    console.log(contact);
     setContacts(state => [...state, contact]);
   };
   const getVisibleContacts = useMemo(() => {
